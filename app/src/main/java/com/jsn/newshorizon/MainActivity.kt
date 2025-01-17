@@ -5,12 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jsn.newshorizon.presentation.navgraph.NavGraph
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingScreen
 import com.jsn.newshorizon.ui.theme.NewsHorizonTheme
@@ -29,6 +33,14 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             NewsHorizonTheme {
+                val isSystemInDarkMode = isSystemInDarkTheme()
+                val systemController = rememberSystemUiController()
+                SideEffect {
+                    systemController.setStatusBarColor(
+                        color = Color.Red,
+                        darkIcons = !isSystemInDarkMode
+                    )
+                }
 //                val boardingScreenViewModel = hiltViewModel<OnBoardingViewModel>()
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
 //                    OnBoardingScreen(
