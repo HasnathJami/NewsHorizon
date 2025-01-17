@@ -11,15 +11,16 @@ import com.jsn.newshorizon.util.Constants
 import com.jsn.newshorizon.util.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class LocalUserManagerImpl(private val context: Context) : LocalUserManager {
+class LocalUserManagerImpl @Inject constructor(private val context: Context) : LocalUserManager {
     override suspend fun saveAppEntry() {
         context.dataStore.edit { settings ->
             settings[PreferencesKeys.APP_ENTRY] = true
         }
     }
 
-    override suspend fun readAppEntry(): Flow<Boolean> {
+    override fun readAppEntry(): Flow<Boolean> {
         return context.dataStore.data.map { preferences ->
             preferences[PreferencesKeys.APP_ENTRY] ?: false
         }
