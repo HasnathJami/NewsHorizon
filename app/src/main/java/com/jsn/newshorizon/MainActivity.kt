@@ -16,9 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingScreen
+import com.jsn.newshorizon.presentation.onboarding.OnBoardingViewModel
 import com.jsn.newshorizon.ui.theme.NewsHorizonTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +30,16 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             NewsHorizonTheme {
+                val boardingScreenViewModel = hiltViewModel<OnBoardingViewModel>()
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
-                    OnBoardingScreen()
+                    OnBoardingScreen(
+                       // event = boardingScreenViewModel::onEvent
+                        event = { value ->
+                            boardingScreenViewModel.onEvent(value)
+                        }
+
+
+                    )
                 }
             }
         }

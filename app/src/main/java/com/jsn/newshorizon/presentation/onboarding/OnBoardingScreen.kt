@@ -1,6 +1,5 @@
 package com.jsn.newshorizon.presentation.onboarding
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +29,7 @@ import com.jsn.newshorizon.presentation.onboarding.components.PageIndicator
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnBoardingScreen(modifier: Modifier = Modifier) {
+fun OnBoardingScreen(event: (OnBoardingEvent) -> Unit = {}) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(0) {
             pages.size
@@ -84,7 +83,7 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
                 NewsButton(text = buttonState[1], onClick = {
                     scope.launch {
                         if (pagerState.currentPage == 2) {
-                            Log.d("checkCompose", "OnBoardingScreen: Clicked")
+                            event(OnBoardingEvent.SaveAppEntry)
 
                         } else {
                             pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
