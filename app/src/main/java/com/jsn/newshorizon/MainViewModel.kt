@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jsn.newshorizon.domain.usercases.AppEntryUseCases
+import com.jsn.newshorizon.domain.usercases.app_entry.AppEntryUseCases
 import com.jsn.newshorizon.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

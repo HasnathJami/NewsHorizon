@@ -1,4 +1,4 @@
-package com.jsn.newshorizon.domain.usercases
+package com.jsn.newshorizon.domain.usercases.app_entry
 
 import com.jsn.newshorizon.domain.manager.LocalUserManager
 
