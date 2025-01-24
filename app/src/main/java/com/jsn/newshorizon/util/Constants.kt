@@ -5,7 +5,7 @@ object Constants {
 
     const val APP_ENTRY = "appEntry"
 
-    // Place Your ZOwn New API Key
+    // Place Your Own News API Key
     const val API_KEY = ""
 
     const val BASE_URL = "https://newsapi.org/v2/"
