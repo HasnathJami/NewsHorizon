@@ -11,6 +11,7 @@ import com.jsn.newshorizon.domain.usercases.app_entry.ReadAppEntry
 import com.jsn.newshorizon.domain.usercases.app_entry.SaveAppEntry
 import com.jsn.newshorizon.domain.usercases.news.GetNews
 import com.jsn.newshorizon.domain.usercases.news.NewsUseCases
+import com.jsn.newshorizon.domain.usercases.news.SearchNews
 import com.jsn.newshorizon.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -67,7 +68,8 @@ object AppModule {
     @Singleton
     fun provideNewsUseCases(newsRepository: NewsRepository): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 }
