@@ -26,10 +26,13 @@ import com.jsn.newshorizon.domain.model.Article
 import com.jsn.newshorizon.presentation.common.ArticleList
 import com.jsn.newshorizon.presentation.common.SearchBar
 import com.jsn.newshorizon.presentation.dimens.Dimens
-import com.jsn.newshorizon.presentation.navgraph.Route
 
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
+) {
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10) {
@@ -63,7 +66,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             text = "",
             readOnly = true,
             onClick = {
-                navigate(Route.SearchScreen.route)
+//                navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {},
             onValueChange = {}
@@ -87,7 +91,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = Dimens.mediumPadding1),
             articles = articles,
             onClick = {
-                navigate(Route.DetailsScreen.route)
+                navigateToDetails(it)
+//                navigate(Route.DetailsScreen.route)
             }
 
         )

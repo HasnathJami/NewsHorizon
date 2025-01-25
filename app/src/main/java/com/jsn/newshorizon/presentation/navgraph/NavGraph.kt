@@ -6,8 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.jsn.newshorizon.presentation.bookmark.BookmarkScreen
-import com.jsn.newshorizon.presentation.bookmark.BookmarkViewModel
+import com.jsn.newshorizon.presentation.news_navigator.NewsNavigator
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingScreen
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingViewModel
 
@@ -49,9 +48,10 @@ fun NavGraph(startDestination: String) {
 //
 //                    , navigate = {})
 
-                val viewModel: BookmarkViewModel = hiltViewModel()
-                BookmarkScreen(state = viewModel.state.value, navigate = {})
+//                val viewModel: BookmarkViewModel = hiltViewModel()
+//                BookmarkScreen(state = viewModel.state.value, navigate = {})
 
+                NewsNavigator()
 
             }
         }

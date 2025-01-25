@@ -17,6 +17,7 @@ import com.jsn.newshorizon.domain.usercases.news.DeleteArticle
 import com.jsn.newshorizon.domain.usercases.news.GetNews
 import com.jsn.newshorizon.domain.usercases.news.NewsUseCases
 import com.jsn.newshorizon.domain.usercases.news.SearchNews
+import com.jsn.newshorizon.domain.usercases.news.SelectArticle
 import com.jsn.newshorizon.domain.usercases.news.SelectArticles
 import com.jsn.newshorizon.domain.usercases.news.UpsertArticle
 import com.jsn.newshorizon.util.Constants
@@ -70,17 +71,19 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsApi: NewsApi): NewsRepository = NewsRepositoryImpl(newsApi)
+    fun provideNewsRepository(newsApi: NewsApi, newsDao: NewsDao): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
-    fun provideNewsUseCases(newsRepository: NewsRepository, newsDao: NewsDao): NewsUseCases {
+    fun provideNewsUseCases(newsRepository: NewsRepository): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            selectArticles = SelectArticles(newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            selectArticle = SelectArticle(newsRepository)
+
         )
     }
 
