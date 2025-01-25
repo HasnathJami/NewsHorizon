@@ -6,10 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.jsn.newshorizon.presentation.bookmark.BookmarkScreen
+import com.jsn.newshorizon.presentation.bookmark.BookmarkViewModel
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingScreen
 import com.jsn.newshorizon.presentation.onboarding.OnBoardingViewModel
-import com.jsn.newshorizon.presentation.search.SearchScreen
-import com.jsn.newshorizon.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(startDestination: String) {
@@ -37,15 +37,22 @@ fun NavGraph(startDestination: String) {
 //                val viewModel: HomeViewModel = hiltViewModel()
 //                val articles = viewModel.news.collectAsLazyPagingItems()
 //                HomeScreen(articles = articles, navigate = {})
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(
-                    state = viewModel.state.value,
-                    event = {
-                        viewModel.onEvent(it)
-//                        viewModel::onEvent
-                    }
 
-                    , navigate = {})
+
+                //                val viewModel: SearchViewModel = hiltViewModel()
+//                SearchScreen(
+//                    state = viewModel.state.value,
+//                    event = {
+//                        viewModel.onEvent(it)
+////                        viewModel::onEvent
+//                    }
+//
+//                    , navigate = {})
+
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                BookmarkScreen(state = viewModel.state.value, navigate = {})
+
+
             }
         }
 
