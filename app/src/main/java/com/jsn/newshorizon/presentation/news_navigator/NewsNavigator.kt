@@ -97,11 +97,11 @@ fun NewsNavigator() {
             }
 
         }) {
-        val bottomPadding = it.calculateBottomPadding()
+//        val bottomPadding = it.calculateBottomPadding()
         NavHost(
             navController = navController,
             startDestination = Route.HomeScreen.route,
-            modifier = Modifier.padding(bottomPadding)
+            modifier = Modifier.padding(it)
         ) {
             composable(route = Route.HomeScreen.route) {
                 val viewModel: HomeViewModel = hiltViewModel()
