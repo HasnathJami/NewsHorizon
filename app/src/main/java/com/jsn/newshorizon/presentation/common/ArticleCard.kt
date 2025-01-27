@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.jsn.newshorizon.R
@@ -69,22 +71,24 @@ fun ArticleCard(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Dimens.ExtraSmallPadding2) ) {
                 Text(
                     text = article.source.name,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)                                                                       ,
                     color = colorResource(id = R.color.body),
                 )
-                Spacer(modifier = Modifier.width(Dimens.ExtraSmallPadding2))
+                //Spacer(modifier = Modifier.width(Dimens.ExtraSmallPadding2))
                 Icon(
                     painter = painterResource(id = R.drawable.ic_time),
                     contentDescription = null,
                     modifier = Modifier.size(SmallIconSize),
                     tint = colorResource(id = R.color.body)
                 )
-                Spacer(modifier = Modifier.width(Dimens.ExtraSmallPadding2))
+               // Spacer(modifier = Modifier.width(Dimens.ExtraSmallPadding2))
                 Text(
                     text = article.publishedAt,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold)                                                                       ,
                     color = colorResource(id = R.color.body),
                 )
